@@ -32,6 +32,16 @@ public class UserService {
     }
 
     /**
+     * Поиск пользователя по email
+     *
+     * @param email
+     * @return
+     */
+    public Optional<User> findByEmail(String email) {
+        return userRepository.findByEmail(email);
+    }
+
+    /**
      * Получение конкретного юзера
      *
      * @return

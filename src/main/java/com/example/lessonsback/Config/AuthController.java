@@ -37,6 +37,11 @@ public class AuthController {
             result.rejectValue("username", null, "Пользователь с таким username уже существует");
         }
 
+        var existingEmail = userService.findByEmail(userRegisterDTO.getEmail());
+        if (existingEmail.isPresent()) {
+            result.rejectValue("email", null, "Пользователь с таким email уже существует");
+        }
+
         if (result.hasErrors()) {
             return "register";
         }
