@@ -31,8 +31,9 @@ public class SecurityUser implements UserDetails {
 
     @Override
     public String getUsername() {
-        return user.getEmail();
+        return user.getUsername();
     }
+
 
     @Override
     public boolean isAccountNonExpired() {
@@ -52,5 +53,13 @@ public class SecurityUser implements UserDetails {
     @Override
     public boolean isEnabled() {
         return true;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void updateUser(User user) {
+        this.user = user;
     }
 }

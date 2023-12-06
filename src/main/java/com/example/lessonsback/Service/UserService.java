@@ -1,17 +1,21 @@
 package com.example.lessonsback.Service;
 
+import com.example.lessonsback.Domain.dto.UserRegisterDTO;
+import com.example.lessonsback.Domain.model.User;
+import com.example.lessonsback.Mapper.UserMapper;
+import com.example.lessonsback.Repository.UserRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
-import com.example.lessonsback.Domain.model.User;
-import com.example.lessonsback.Repository.UserRepository;
 
+
+import java.util.List;
 import java.util.Optional;
 
 @Service
 @AllArgsConstructor
 public class UserService {
     private final UserRepository userRepository;
-//  private final UserMapper userMapper;
+    private final UserMapper userMapper;
 
     public void save(User user) {
         userRepository.save(user);
@@ -43,5 +47,15 @@ public class UserService {
      */
     public User getById(int id) {
         return findById(id).orElseThrow();
+    }
+
+
+
+    /**
+     * Регистрация пользователя
+     * @param userRegisterDTO
+     */
+    public void register(UserRegisterDTO userRegisterDTO) {
+        save(userMapper.registerDTOToUser(userRegisterDTO));
     }
 }
