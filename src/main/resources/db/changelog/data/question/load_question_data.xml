@@ -9,16 +9,20 @@
         <loadData
                 commentLineStartsWith="//"
                 encoding="UTF-8"
-                file="tests.csv"
+                file="question.csv"
                 quotchar="'"
                 relativeToChangelogFile="true"
                 separator=";"
-                tableName="tests"
+                tableName="question"
                 usePreparedStatements="true">
-<!--            <column name="id" type="numeric"/>-->
-            <column name="test_name" type="string"/>
-            <column name="desc" type="string"/>
-            <column name="min_grade" type="numeric"/>
+            <!--            <column name="id" type="numeric"/>-->
+            <column name="question_text" type="string"/>
+            <column name="correct_answer" type="string"/>
+            <column name="second_answer" type="string"/>
+            <column name="third_answer" type="string"/>
+            <column name="fourth_answer" type="string"/>
+            <column name="score" type="numeric"/>
+            <column name="test_id" type="numeric"/>
 
         </loadData>
     </changeSet>

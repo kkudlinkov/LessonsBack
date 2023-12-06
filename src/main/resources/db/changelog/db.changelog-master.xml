@@ -9,6 +9,6 @@
 
         <include file="data/tests/load_tests_data.xml" relativeToChangelogFile="true"/>
         <include file="data/user/load_user_data.xml" relativeToChangelogFile="true"/>
-
+        <include file="data/question/load_question_data.xml" relativeToChangelogFile="true"/>
 
 </databaseChangeLog>

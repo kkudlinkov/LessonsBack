@@ -1,4 +1,4 @@
-test_name,desc,min_grade
-test1,Description1,7
-test2,Description2,5
-test3,Description3,8
+test_name;desc;min_grade
+test1;Description1;7
+test2;Description2;5
+test3;Description3;8

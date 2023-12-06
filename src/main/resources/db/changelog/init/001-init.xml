@@ -33,4 +33,22 @@
             </column>
         </createTable>
     </changeSet>
+
+    <changeSet id="create-question-table" author="admin">
+        <createTable tableName="question">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="question_text" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="correct_answer" type="VARCHAR(255)"/>
+            <column name="second_answer" type="VARCHAR(255)"/>
+            <column name="third_answer" type="VARCHAR(255)"/>
+            <column name="fourth_answer" type="VARCHAR(255)"/>
+            <column name="score" type="BIGINT"/>
+            <column name="test_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+
 </databaseChangeLog>
