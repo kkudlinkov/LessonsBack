@@ -62,4 +62,15 @@
         </createTable>
     </changeSet>
 
+    <changeSet id="create-answer-table" author="admin">
+        <createTable tableName="answer">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="is_correct" type="BOOLEAN"/>
+            <column name="question_id" type="BIGINT"/>
+            <column name="attempt_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+
 </databaseChangeLog>
