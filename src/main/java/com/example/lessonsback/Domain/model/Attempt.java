@@ -1,0 +1,31 @@
+package com.example.lessonsback.Domain.model;
+
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+@Entity
+@Table(name = "attempt")
+@NoArgsConstructor
+@AllArgsConstructor
+@Getter
+@Setter
+public class Attempt {
+    @Id
+    @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
+
+    @Column(name = "is_success")
+    private Boolean is_success;
+
+    @ManyToOne
+    @JoinColumn(name = "test_id")
+    private Test test;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
+}

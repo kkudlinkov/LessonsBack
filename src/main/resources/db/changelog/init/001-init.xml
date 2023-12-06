@@ -4,7 +4,7 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
                       http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
     <changeSet id="create-tests-table" author="admin">
-        <createTable tableName="tests">
+        <createTable tableName="test">
             <column name="id" type="BIGINT" autoIncrement="true">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
@@ -48,6 +48,17 @@
             <column name="fourth_answer" type="VARCHAR(255)"/>
             <column name="score" type="BIGINT"/>
             <column name="test_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="create-attempt-table" author="admin">
+        <createTable tableName="attempt">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="is_success" type="BOOLEAN"/>
+            <column name="test_id" type="BIGINT"/>
+            <column name="user_id" type="BIGINT"/>
         </createTable>
     </changeSet>
 

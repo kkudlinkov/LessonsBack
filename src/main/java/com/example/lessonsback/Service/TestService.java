@@ -1,7 +1,7 @@
 package com.example.lessonsback.Service;
 
-import com.example.lessonsback.Domain.model.Question;
-import com.example.lessonsback.Repository.QuestionRepository;
+import com.example.lessonsback.Domain.model.Test;
+import com.example.lessonsback.Repository.TestRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -10,16 +10,16 @@ import java.util.Optional;
 
 @Service
 @AllArgsConstructor
-public class QuestionService {
-    private final QuestionRepository questionRepository;
+public class TestService {
+    private final TestRepository testRepository;
 
     /**
      * Получение всех тестов
      *
      * @return
      */
-    public List<Question> getAllQuestions(){
-        return questionRepository.findAll();
+    public List<Test> getAllTests(){
+        return testRepository.findAll();
     }
 
     /**
@@ -27,8 +27,8 @@ public class QuestionService {
      *
      * @return
      */
-    public Optional<Question> findById(int id) {
-        return questionRepository.findById(id);
+    public Optional<Test> findById(int id) {
+        return testRepository.findById(id);
     }
 
     /**
@@ -36,7 +36,7 @@ public class QuestionService {
      *
      * @return
      */
-    public Question getById(int id) {
+    public Test getById(int id) {
         return findById(id).orElseThrow();
     }
 }

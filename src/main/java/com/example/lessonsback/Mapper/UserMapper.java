@@ -21,6 +21,6 @@ public abstract class UserMapper {
     @Mapping(target = "id", ignore = true)
     @Mapping(target = "password", expression = "java(passwordEncoder.encode(userRegisterDTO.getPassword()))")
     @Mapping(target = "role", constant = "ROLE_USER")
-//    @Mapping(target = "tests", ignore = true)
+//    @Mapping(target = "test", ignore = true)
     public abstract User registerDTOToUser(UserRegisterDTO userRegisterDTO);
 }

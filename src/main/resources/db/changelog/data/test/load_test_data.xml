@@ -9,11 +9,11 @@
         <loadData
                 commentLineStartsWith="//"
                 encoding="UTF-8"
-                file="tests.csv"
+                file="test.csv"
                 quotchar="'"
                 relativeToChangelogFile="true"
                 separator=";"
-                tableName="tests"
+                tableName="test"
                 usePreparedStatements="true">
 <!--            <column name="id" type="numeric"/>-->
             <column name="test_name" type="string"/>

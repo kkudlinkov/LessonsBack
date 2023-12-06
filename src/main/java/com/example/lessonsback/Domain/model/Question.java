@@ -38,6 +38,6 @@ public class Question {
 
     @ManyToOne
     @JoinColumn(name = "test_id")
-    private Tests test;
+    private Test test;
 
 }
