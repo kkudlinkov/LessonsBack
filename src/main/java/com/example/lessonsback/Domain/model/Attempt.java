@@ -19,7 +19,7 @@ public class Attempt {
     private int id;
 
     @Column(name = "is_success")
-    private Boolean is_success;
+    private Boolean isSuccess;
 
     @ManyToOne
     @JoinColumn(name = "test_id")

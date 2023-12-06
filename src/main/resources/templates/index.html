@@ -11,7 +11,45 @@
 </head>
 <body>
 <section layout:fragment="content">
+    <section class="bg-dark py-5"
+             style="background-image: url('https://catherineasquithgallery.com/uploads/posts/2023-01/1674255002_catherineasquithgallery-com-p-matritsa-serii-fon-foto-79.png'); background-size: cover; height: 500px">
+        <div class="container px-4 px-lg-5 my-5" style="height: 100%; position: relative">
+            <div class="text-white" style="position: absolute; bottom: 0; right: 0">
+                <h1 class="display-4 fw-bolder">Тестирование</h1>
+                <p class="fw-normal text-white mb-0">Здесь ты можешь прочитать отличную методичку, написаную профисионалами и пройти тестирование по данной теме
+                </p>
+            </div>
+        </div>
+    </section>
 
+    <section class="py-5">
+        <div class="container px-4 px-lg-5 mt-5">
+            <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+
+                <div class="col mb-5" th:each="test: ${test}">
+                    <div class="card h-100">
+                        <!-- Film image-->
+                        <h3 class="card-img-top;" style="height: 400px;" th:src="${test.getDesc()}" alt="..."/>
+                        <!-- Film details-->
+                        <div class="card-body p-4">
+                            <div class="text-center">
+                                <!-- Film name-->
+                                <h5 class="fw-bolder" th:text="${test.getTestName()}"></h5>
+                                <!-- Film actor-->
+                            </div>
+                        </div>
+                        <!-- Film actions-->
+                        <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                            <div class="d-flex">
+                                <a class="btn btn-outline-dark flex-grow-1 me-2"
+                                   th:href="@{films/{id}(id=${test.getId()})}">Перейти</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 </section>
 </body>
 </html>

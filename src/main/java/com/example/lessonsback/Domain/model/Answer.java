@@ -19,7 +19,7 @@ public class Answer {
     private int id;
 
     @Column(name = "is_correct")
-    private Boolean is_correct;
+    private Boolean isCorrect;
 
     @ManyToOne
     @JoinColumn(name = "question_id")

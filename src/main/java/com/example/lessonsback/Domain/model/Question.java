@@ -19,7 +19,7 @@ public class Question {
     private int id;
 
     @Column(name = "question_text")
-    private String question_text;
+    private String questionText;
 
     @Column(name = "correct_answer")
     private String correctAnswer;

@@ -19,11 +19,11 @@ public class Test {
     private int id;
 
     @Column(name = "test_name")
-    private String test_name;
+    private String testName;
 
     @Column(name = "desc")
     private String desc;
 
     @Column(name = "min_grade")
-    private int min_grade;
+    private int minGrade;
 }
