@@ -47,6 +47,11 @@
                     <a th:if="${!isAuth}" href="/auth/register" class="btn btn-outline-light me-2"
                        type="submit">Регистрация</a>
                 </form>
+                <form th:if="${isAuth}" th:method="POST" th:action="@{/logout}" class="m-0">
+                    <input type="submit"
+                           class="btn btn-danger me-2 ui-helper-clearfix"
+                           value="Выйти"/>
+                </form>
             </div>
         </div>
     </nav>
