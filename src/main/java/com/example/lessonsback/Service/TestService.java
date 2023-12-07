@@ -1,5 +1,9 @@
 package com.example.lessonsback.Service;
 
+import com.example.lessonsback.Domain.dto.SubmitQuestion;
+import com.example.lessonsback.Domain.dto.SubmitTestDTO;
+import com.example.lessonsback.Domain.model.Answer;
+import com.example.lessonsback.Domain.model.Attempt;
 import com.example.lessonsback.Domain.model.Test;
 import com.example.lessonsback.Repository.AttemptRepository;
 import com.example.lessonsback.Repository.TestRepository;
@@ -13,7 +17,10 @@ import java.util.Optional;
 @Service
 @AllArgsConstructor
 public class TestService {
-    private final TestRepository testRepository;
+    private final TestRepository repository;
+    private final AttemptRepository attemptRepository;
+    private final QuestionService questionService;
+    private final AuthService authService;
 
     /**
      * Получение всех тестов
@@ -21,7 +28,7 @@ public class TestService {
      * @return
      */
     public List<Test> getAllTests(){
-        return testRepository.findAll();
+        return repository.findAll();
     }
 
     /**
@@ -30,7 +37,7 @@ public class TestService {
      * @return
      */
     public Optional<Test> findById(int id) {
-        return testRepository.findById(id);
+        return repository.findById(id);
     }
 
     /**
@@ -40,5 +47,44 @@ public class TestService {
      */
     public Test getById(int id) {
         return findById(id).orElseThrow();
+    }
+
+
+    public void submitTest(Integer testId, SubmitTestDTO request) {
+        // Тут создаём коннектор
+        var test = getById(testId);
+
+        var user = authService.getAuthUser().orElseThrow();
+
+        // Получаем все вопросы по id
+
+        // Создаём экхемпляр попытки
+        Attempt attempt = new Attempt();
+        attempt.setAnswers(new ArrayList<>());
+        attempt.setTest(test);
+        attempt.setUser(user);
+
+
+        for (var q : request.getQuestions()) {
+            var question = questionService.getById(q.getQuestionId());
+            // проверяем, что вопрос принадлежит тесту
+            if (question.getTest().getId() != testId) {
+                throw new RuntimeException("Error");
+            }
+            // Проверяем что ответ правильный
+            // Если правильный, то добавляем в попытку объект ответа на вопрос
+            var answer = new Answer();
+            answer.setAttempt(attempt);
+            answer.setQuestion(question);
+            answer.setIsCorrect(Integer.valueOf(q.getSelectedAnswer()).equals(question.getCorrectAnswer()));
+            attempt.getAnswers().add(answer);
+
+        }
+
+        // Проверка на удачную попытку (Набранные баллы >= Проходного балла в тесте)
+        attempt.setIsSuccess(attempt.getAnswers().stream().filter(Answer::getIsCorrect).count() >= test.getMinGrade());
+
+        // Сохраняем попытку
+        attemptRepository.save(attempt);
     }
 }
