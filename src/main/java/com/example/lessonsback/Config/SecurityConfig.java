@@ -20,7 +20,7 @@ public class SecurityConfig {
         http
                 .authorizeHttpRequests() //Объект http
                 .requestMatchers("/admin/**").hasRole("ADMIN")
-                .requestMatchers("/home", "/tests/**", "/style/**", "/").permitAll() //permitAll кто угодно
+                .requestMatchers("/home", "/test/**", "/style/**", "/").permitAll() //permitAll кто угодно
                 .requestMatchers("/auth/login", "/auth/register").permitAll()// authenticated что доступно уинтифицированным
                 .anyRequest().authenticated()
                 .and()

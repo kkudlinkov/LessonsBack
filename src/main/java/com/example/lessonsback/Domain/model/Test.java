@@ -6,6 +6,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.List;
+
 @Entity
 @Table(name = "test")
 @NoArgsConstructor
@@ -26,4 +28,7 @@ public class Test {
 
     @Column(name = "min_grade")
     private int minGrade;
+
+    @OneToMany(mappedBy = "test")
+    private List<Question> questions;
 }

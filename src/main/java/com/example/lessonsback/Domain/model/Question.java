@@ -21,8 +21,8 @@ public class Question {
     @Column(name = "question_text")
     private String questionText;
 
-    @Column(name = "correct_answer")
-    private String correctAnswer;
+    @Column(name = "first_answer")
+    private String firstAnswer;
 
     @Column(name = "second_answer")
     private String secondAnswer;
@@ -33,11 +33,13 @@ public class Question {
     @Column(name = "fourth_answer")
     private String fourthAnswer;
 
+    @Column(name = "correct_answer")
+    private Integer correctAnswer;
+
     @Column (name = "score")
     private String score;
 
     @ManyToOne
     @JoinColumn(name = "test_id")
     private Test test;
-
 }

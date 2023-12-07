@@ -17,11 +17,12 @@
                 usePreparedStatements="true">
             <!--            <column name="id" type="numeric"/>-->
             <column name="question_text" type="string"/>
-            <column name="correct_answer" type="string"/>
+            <column name="first_answer" type="string"/>
             <column name="second_answer" type="string"/>
             <column name="third_answer" type="string"/>
             <column name="fourth_answer" type="string"/>
             <column name="score" type="numeric"/>
+            <column name="correct_answer" type="numeric"/>
             <column name="test_id" type="numeric"/>
 
         </loadData>
