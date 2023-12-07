@@ -42,4 +42,18 @@ public class Question {
     @ManyToOne
     @JoinColumn(name = "test_id")
     private Test test;
+
+    @Override
+    public String toString() {
+        return "Question{" +
+                "id=" + id +
+                ", questionText='" + questionText + '\'' +
+                ", firstAnswer='" + firstAnswer + '\'' +
+                ", secondAnswer='" + secondAnswer + '\'' +
+                ", thirdAnswer='" + thirdAnswer + '\'' +
+                ", fourthAnswer='" + fourthAnswer + '\'' +
+                ", correctAnswer=" + correctAnswer +
+                ", score='" + score + '\'' +
+                '}';
+    }
 }

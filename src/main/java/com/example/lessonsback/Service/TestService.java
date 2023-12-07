@@ -1,10 +1,12 @@
 package com.example.lessonsback.Service;
 
 import com.example.lessonsback.Domain.model.Test;
+import com.example.lessonsback.Repository.AttemptRepository;
 import com.example.lessonsback.Repository.TestRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 

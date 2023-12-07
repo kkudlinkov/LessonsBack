@@ -1,13 +1,15 @@
 package com.example.lessonsback.Controller;
 
+import com.example.lessonsback.Domain.dto.SubmitTestDTO;
+import com.example.lessonsback.Domain.model.Question;
 import com.example.lessonsback.Service.AuthService;
 import com.example.lessonsback.Service.TestService;
 import lombok.AllArgsConstructor;
 import org.springframework.ui.Model;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @Controller
 @RequestMapping("/test")
@@ -39,5 +41,20 @@ public class TestController {
         }
         model.addAttribute("test", test);
         return "test";
+    }
+
+    @PostMapping("/test-submit/{testId}")
+    public String submitTest(
+            @ModelAttribute("submitTestDTO") SubmitTestDTO request,
+            @PathVariable("testId") Integer testId
+    ) {
+        testService.submitTest(testId, request);
+//        System.out.println(testId);
+//        System.out.println(submitTestDTO);
+//        List<Question> answers = submitTestDTO.getQuestions();
+//        for (Question answer : answers) {
+//            System.out.println(answer);
+//        }
+        return "redirect:/"; // Замените "result-page" на имя вашей страницы с результатами
     }
 }

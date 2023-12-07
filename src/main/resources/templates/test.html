@@ -30,24 +30,32 @@
                             mind. Because it transforms who we are, how we live, and it gives us an understanding of our
                             place
                             in the universe.</p>
-                        <form method="post">
-                            <div th:each="question:${test.getQuestions()}">
+                        <form method="post" th:action="@{/test/test-submit/{id}(id = ${test.id})}">
+                            <div th:each="question, qIndex : ${test.getQuestions()}">
                                 <p th:text="${question.getQuestionText()}"></p>
                                 <div>
-                                    <input type="radio" th:name="'question_' + ${question.getId()}" value="1"/>
-                                    <label th:text="${question.firstAnswer}"></label>
+                                    <input type="radio" th:name="'questions['+ ${qIndex.index} + '].selectedAnswer'"
+                                        th:value="1"
+                                    />
+                                    <label th:text="${question.firstAnswer}"/>
                                 </div>
                                 <div>
-                                    <input type="radio" th:name="'question_' + ${question.getId()}" value="2"/>
-                                    <label th:text="${question.secondAnswer}"></label>
+                                    <input type="radio" th:name="'questions['+ ${qIndex.index} + '].selectedAnswer'"
+                                           th:value="2"
+                                    />
+                                    <label th:text="${question.secondAnswer}"/>
                                 </div>
                                 <div>
-                                    <input type="radio" th:name="'question_' + ${question.getId()}" value="3"/>
-                                    <label th:text="${question.thirdAnswer}"></label>
+                                    <input type="radio" th:name="'questions['+ ${qIndex.index} + '].selectedAnswer'"
+                                           th:value="3"
+                                    />
+                                    <label th:text="${question.thirdAnswer}"/>
                                 </div>
                                 <div>
-                                    <input type="radio" th:name="'question_' + ${question.getId()}" value="4"/>
-                                    <label th:text="${question.fourthAnswer}"></label>
+                                    <input type="radio" th:name="'questions['+ ${qIndex.index} + '].selectedAnswer'"
+                                           th:value="4"
+                                    />
+                                    <label th:text="${question.fourthAnswer}"/>
                                 </div>
                             </div>
                             <button type="submit" class="btn btn-primary">Отправить ответы</button>
