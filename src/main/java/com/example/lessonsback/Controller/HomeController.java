@@ -1,5 +1,6 @@
 package com.example.lessonsback.Controller;
 
+import com.example.lessonsback.Domain.model.Attempt;
 import com.example.lessonsback.Service.AuthService;
 import com.example.lessonsback.Service.TestService;
 import lombok.AllArgsConstructor;
@@ -12,7 +13,6 @@ import org.springframework.ui.Model;
 public class HomeController {
     private final TestService testService;
     private final AuthService authService;
-
 
     @GetMapping("/")
     public String home(Model model) {

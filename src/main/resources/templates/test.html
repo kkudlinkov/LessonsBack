@@ -14,6 +14,7 @@
     <!-- Bootstrap icons-->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet"/>
     <title>Тема</title>
+    <link rel="stylesheet" href="../static/style.css">
 </head>
 <body>
 <section layout:fragment="content">
@@ -25,19 +26,18 @@
                         <h1 class="fw-bolder mb-1" th:text="${test.getTestName()}">Welcome to Blog Post!</h1>
                     </div>
                     <section class="mb-5">
-                        <p class="fs-5 mb-4" th:text="${test.getDesc()}">Science is an enterprise that should be
-                            cherished as an activity of the free human
-                            mind. Because it transforms who we are, how we live, and it gives us an understanding of our
-                            place
-                            in the universe.</p>
-                        <form method="post" th:action="@{/test/test-submit/{id}(id = ${test.id})}">
-                            <div th:each="question, qIndex : ${test.getQuestions()}">
+                        <p class="fs-5 mb-4" th:utext="${test.getDesc()}"></p>
+                        <form th:if="${!isPassed}" style="background-color:rgba(240,240,240,0.8); padding:15px;"
+                              class="question_blocks" method="post"
+                              th:action="@{/test/test-submit/{id}(id = ${test.id})}">
+                            <div style="display: flex; flex-direction:column; gap:6px; padding-bottom: 18px;"
+                                 class="question_block" th:each="question, qIndex : ${test.getQuestions()}">
                                 <p th:text="${question.getQuestionText()}"></p>
                                 <input type="hidden" th:name="'questions[' + ${qIndex.index} + '].questionId'"
                                        th:value="${question.id}"/>
                                 <div>
                                     <input type="radio" th:name="'questions['+ ${qIndex.index} + '].selectedAnswer'"
-                                        th:value="1"
+                                           th:value="1"
                                     />
                                     <label th:text="${question.firstAnswer}"/>
                                 </div>
@@ -62,6 +62,9 @@
                             </div>
                             <button type="submit" class="btn btn-primary">Отправить ответы</button>
                         </form>
+                        <div style="height: 100px; display: flex; align-items:center; background-color:#92E689; border-radius:16px; border: 2px solid green" th:if="${isPassed}">
+                            <p style="margin:0; font-size: 24px; padding-left: 16px">Поздравляю, вы успешно сдали этот тест!</p>
+                        </div>
                     </section>
                 </div>
                 <!-- Side widgets-->

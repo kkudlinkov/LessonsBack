@@ -79,12 +79,25 @@ public class TestService {
             answer.setIsCorrect(Integer.valueOf(q.getSelectedAnswer()).equals(question.getCorrectAnswer()));
             attempt.getAnswers().add(answer);
 
+            System.out.println(q.getSelectedAnswer() + " " + question.getCorrectAnswer());
+            //вычисляем сумму баллов правильных ответов
+            System.out.println(attempt.getAnswers().stream().filter(Answer::getIsCorrect).count());
+
         }
 
         // Проверка на удачную попытку (Набранные баллы >= Проходного балла в тесте)
-        attempt.setIsSuccess(attempt.getAnswers().stream().filter(Answer::getIsCorrect).count() >= test.getMinGrade());
+        // Проверка на удачную попытку (Все набранные баллы >= Проходного балла в тесте)
 
+        attempt.setIsSuccess(attempt.getAnswers().stream().filter(Answer::getIsCorrect).count() >= test.getMinGrade());
+        // Вывод сообщение о результате попытки
+        System.out.println(attempt.getIsSuccess() ? "Успешно" : "Не успешно");
         // Сохраняем попытку
         attemptRepository.save(attempt);
     }
+
+//    public boolean isPassed(int id) {
+//        var test = getById(id);
+//        var user = authService.getAuthUser().orElseThrow();
+//        return attemptRepository.existByTestIdAndUserIdAndIsSuccess(test.getId(), user.getId(), true);
+//    }
 }

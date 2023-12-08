@@ -1,0 +1,15 @@
+p{
+    padding: 0;
+}
+
+.question_blocks{
+    background-color:rgba(240,240,240,0.8);
+    padding:15px;
+}
+
+.question_block{
+    display: flex;
+    flex-direction:column;
+    gap:6px;
+    padding-bottom: 18px;
+}

@@ -31,6 +31,9 @@ public class TestController {
         // Провряем, авторизован ли пользователь добавляя переменную isAuth
         model.addAttribute("isAuth", authService.getAuthUser().isPresent());
 
+        //Проверка пройден ли тест
+//        model.addAttribute("isPassed", testService.isPassed(id));
+
         // Если пользователь авторизован, то добавляем его в модель
         authService.getAuthUser().ifPresent(user -> model.addAttribute("user", user));
 
@@ -49,12 +52,6 @@ public class TestController {
             @PathVariable("testId") Integer testId
     ) {
         testService.submitTest(testId, request);
-//        System.out.println(testId);
-//        System.out.println(submitTestDTO);
-//        List<Question> answers = submitTestDTO.getQuestions();
-//        for (Question answer : answers) {
-//            System.out.println(answer);
-//        }
         return "redirect:/"; // Замените "result-page" на имя вашей страницы с результатами
     }
 }
