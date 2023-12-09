@@ -27,9 +27,14 @@
                     </div>
                     <section class="mb-5">
                         <p class="fs-5 mb-4" th:utext="${test.getDesc()}"></p>
-                        <form th:if="${!isPassed}" style="background-color:rgba(240,240,240,0.8); padding:15px;"
+                        <form th:unless="${isPassed.isSuccess}"
+                              style="background-color:rgba(240,240,240,0.8); padding:15px;"
                               class="question_blocks" method="post"
                               th:action="@{/test/test-submit/{id}(id = ${test.id})}">
+                            <div class="card p-2 mb-2"
+                                 th:text="${'Для сдачи теста нужно наборать ' + test.getMinGrade() + ' баллов'}"
+                            />
+
                             <div style="display: flex; flex-direction:column; gap:6px; padding-bottom: 18px;"
                                  class="question_block" th:each="question, qIndex : ${test.getQuestions()}">
                                 <p th:text="${question.getQuestionText()}"></p>
@@ -39,31 +44,41 @@
                                     <input type="radio" th:name="'questions['+ ${qIndex.index} + '].selectedAnswer'"
                                            th:value="1"
                                     />
-                                    <label th:text="${question.firstAnswer}"/>
+                                    <label th:text="${question.firstAnswer}"/>                                    </label>
+
                                 </div>
                                 <div>
                                     <input type="radio" th:name="'questions['+ ${qIndex.index} + '].selectedAnswer'"
                                            th:value="2"
                                     />
                                     <label th:text="${question.secondAnswer}"/>
+
+
                                 </div>
                                 <div>
                                     <input type="radio" th:name="'questions['+ ${qIndex.index} + '].selectedAnswer'"
                                            th:value="3"
                                     />
                                     <label th:text="${question.thirdAnswer}"/>
+
+
                                 </div>
                                 <div>
                                     <input type="radio" th:name="'questions['+ ${qIndex.index} + '].selectedAnswer'"
                                            th:value="4"
                                     />
                                     <label th:text="${question.fourthAnswer}"/>
+
+
                                 </div>
                             </div>
                             <button type="submit" class="btn btn-primary">Отправить ответы</button>
                         </form>
-                        <div style="height: 100px; display: flex; align-items:center; background-color:#92E689; border-radius:16px; border: 2px solid green" th:if="${isPassed}">
-                            <p style="margin:0; font-size: 24px; padding-left: 16px">Поздравляю, вы успешно сдали этот тест!</p>
+                        <div style="height: 100px; display: flex; align-items:center; background-color:#92E689; border-radius:16px; border: 2px solid green"
+                             th:if="${isPassed.isSuccess}">
+                            <p style="margin:0; font-size: 24px; padding-left: 16px"
+                               th:text="${'Поздравляю, вы успешно сдали этот с ' + isPassed.tries + ' попытки!'}"
+                            />
                         </div>
                     </section>
                 </div>

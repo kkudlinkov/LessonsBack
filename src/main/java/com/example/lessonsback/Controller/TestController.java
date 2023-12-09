@@ -5,6 +5,7 @@ import com.example.lessonsback.Domain.model.Question;
 import com.example.lessonsback.Service.AuthService;
 import com.example.lessonsback.Service.TestService;
 import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.ui.Model;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -13,7 +14,7 @@ import java.util.List;
 
 @Controller
 @RequestMapping("/test")
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class TestController {
     private final TestService testService;
     private final AuthService authService;
@@ -31,8 +32,8 @@ public class TestController {
         // Провряем, авторизован ли пользователь добавляя переменную isAuth
         model.addAttribute("isAuth", authService.getAuthUser().isPresent());
 
-        //Проверка пройден ли тест
-//        model.addAttribute("isPassed", testService.isPassed(id));
+        // Проверка пройден ли тест
+        model.addAttribute("isPassed", testService.isPassed(id));
 
         // Если пользователь авторизован, то добавляем его в модель
         authService.getAuthUser().ifPresent(user -> model.addAttribute("user", user));
@@ -52,6 +53,7 @@ public class TestController {
             @PathVariable("testId") Integer testId
     ) {
         testService.submitTest(testId, request);
-        return "redirect:/"; // Замените "result-page" на имя вашей страницы с результатами
+//        return "redirect:/"; // Замените "result-page" на имя вашей страницы с результатами
+        return "redirect:/test/" + testId + "#secuss";
     }
 }

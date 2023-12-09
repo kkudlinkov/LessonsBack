@@ -2,6 +2,7 @@ package com.example.lessonsback.Service;
 
 import com.example.lessonsback.Domain.dto.SubmitQuestion;
 import com.example.lessonsback.Domain.dto.SubmitTestDTO;
+import com.example.lessonsback.Domain.dto.TestPassData;
 import com.example.lessonsback.Domain.model.Answer;
 import com.example.lessonsback.Domain.model.Attempt;
 import com.example.lessonsback.Domain.model.Test;
@@ -95,9 +96,15 @@ public class TestService {
         attemptRepository.save(attempt);
     }
 
-//    public boolean isPassed(int id) {
-//        var test = getById(id);
-//        var user = authService.getAuthUser().orElseThrow();
-//        return attemptRepository.existByTestIdAndUserIdAndIsSuccess(test.getId(), user.getId(), true);
-//    }
+    public TestPassData isPassed(int id) {
+        var test = getById(id);
+        var user = authService.getAuthUser().orElseThrow();
+
+        var attemps = attemptRepository.findAllByTestIdAndUserId(test.getId(), user.getId());
+
+        return TestPassData.builder()
+                .isSuccess(attemps.stream().anyMatch(Attempt::getIsSuccess))
+                .tries(attemps.size())
+                .build();
+    }
 }
