@@ -36,9 +36,6 @@ public class Question {
     @Column(name = "correct_answer")
     private Integer correctAnswer;
 
-    @Column (name = "score")
-    private String score;
-
     @ManyToOne
     @JoinColumn(name = "test_id")
     private Test test;
@@ -53,7 +50,6 @@ public class Question {
                 ", thirdAnswer='" + thirdAnswer + '\'' +
                 ", fourthAnswer='" + fourthAnswer + '\'' +
                 ", correctAnswer=" + correctAnswer +
-                ", score='" + score + '\'' +
                 '}';
     }
 }

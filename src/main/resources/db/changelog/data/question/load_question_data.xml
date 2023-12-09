@@ -21,7 +21,6 @@
             <column name="second_answer" type="string"/>
             <column name="third_answer" type="string"/>
             <column name="fourth_answer" type="string"/>
-            <column name="score" type="numeric"/>
             <column name="correct_answer" type="numeric"/>
             <column name="test_id" type="numeric"/>
 

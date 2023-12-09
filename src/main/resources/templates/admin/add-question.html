@@ -1,0 +1,68 @@
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="admin/admin_layout"
+>
+<head>
+    <meta charset="UTF-8">
+    <title>Добавление фильма</title>
+    <link rel="stylesheet" href="/style/style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
+          integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+</head>
+<body>
+
+<section layout:fragment="content">
+    <div class="login-block container">
+        <h1>Добавление фильма</h1>
+        <form th:method="post" th:action="@{/admin/questions/add}" th:object="${question}">
+            <div class="form-group mb-3 w-100" style="text-align: left">
+                <label for="name">Название темы:</label>
+                <input type="text" class="form-control" id="name" th:field="*{questionText}"/>
+                <hr class="hr-xs">
+            </div>
+            <div class="form-group mb-3 w-100" style="text-align: left">
+                <label for="first_answer">Первый ответ:</label>
+                <textarea type="text" class="form-control" id="first_answer" th:field="*{firstAnswer}"></textarea>
+                <hr class="hr-xs">
+            </div>
+
+            <div class="form-group mb-3 w-100" style="text-align: left">
+                <label for="second_answer">Второй ответ:</label>
+                <textarea type="text" class="form-control" id="second_answer" th:field="*{secondAnswer}"></textarea>
+                <hr class="hr-xs">
+            </div>
+
+            <div class="form-group mb-3 w-100" style="text-align: left">
+                <label for="third_answer">Третий ответ:</label>
+                <textarea type="text" class="form-control" id="third_answer" th:field="*{thirdAnswer}"></textarea>
+                <hr class="hr-xs">
+            </div>
+
+            <div class="form-group mb-3 w-100" style="text-align: left">
+                <label for="fourth_answer">Четвертый ответ:</label>
+                <textarea type="text" class="form-control" id="fourth_answer" th:field="*{fourthAnswer}"></textarea>
+                <hr class="hr-xs">
+            </div>
+
+            <div class="form-group mb-3 w-100" style="text-align: left">
+                <label for="correct_answer">Правильный ответ:</label>
+                <input type="number" class="form-control" id="correct_answer" th:field="*{correctAnswer}"/>
+                <hr class="hr-xs">
+            </div>
+
+            <div class="form-group mb-3 w-100" style="text-align: left">
+                <label for="test_id">Id теста</label>
+                <input type="text" class="form-control" id="test_id" th:field="*{test}"/>
+                <hr class="hr-xs">
+            </div>
+
+            <div class="w-100" style="text-align: left">
+                <button type="submit" class="btn btn-primary">Добавить вопрос</button>
+                <a href="/admin/users" class="btn btn-secondary">Отменить</a>
+            </div>
+
+
+        </form>
+    </div>
+</section>
+</body>
+</html>

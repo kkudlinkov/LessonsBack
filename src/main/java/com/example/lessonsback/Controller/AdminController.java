@@ -31,7 +31,7 @@ public class AdminController {
     }
 
 
-
+//Сортировка тестов по id
     @GetMapping("/tests")
     public String tests(
             Model model
@@ -50,7 +50,7 @@ public class AdminController {
     }
 
     /**
-     * Редактирование товара
+     * Редактирование теста
      */
     @PostMapping("/tests/edit")
     public String editProductPost(
@@ -59,6 +59,33 @@ public class AdminController {
         adminService.saveTest(test);
         return "redirect:/admin/tests?success";
     }
+
+    /**
+     * Добавление теста
+     *
+     * @return
+     */
+    @GetMapping("/tests/add")
+    public String addTest(
+            Model model
+    ) {
+        model.addAttribute("test", new Test());
+        return "admin/add-test";
+    }
+
+    /**
+     * Добавление теста
+     *
+     * @return
+     */
+    @PostMapping("/tests/add")
+    public String addTestPost(
+            @ModelAttribute("test") Test test
+    ) {
+        adminService.saveTest(test);
+        return "redirect:/admin/tests?success";
+    }
+
 
     @GetMapping("/questions")
     public String questions(
@@ -79,6 +106,32 @@ public class AdminController {
 
     @PostMapping("/questions/edit")
     public String editQuestionPost(
+            @ModelAttribute("question") Question question
+    ) {
+        adminService.saveQuestion(question);
+        return "redirect:/admin/questions?success";
+    }
+
+    /**
+     * Добавление теста
+     *
+     * @return
+     */
+    @GetMapping("/questions/add")
+    public String addQuestion(
+            Model model
+    ) {
+        model.addAttribute("question", new Question());
+        return "admin/add-question";
+    }
+
+    /**
+     * Добавление теста
+     *
+     * @return
+     */
+    @PostMapping("/questions/add")
+    public String addQuestionPost(
             @ModelAttribute("question") Question question
     ) {
         adminService.saveQuestion(question);

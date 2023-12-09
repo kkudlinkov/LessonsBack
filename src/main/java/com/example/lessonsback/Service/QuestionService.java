@@ -4,6 +4,7 @@ import com.example.lessonsback.Domain.model.Question;
 import com.example.lessonsback.Domain.model.Test;
 import com.example.lessonsback.Repository.QuestionRepository;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -20,7 +21,7 @@ public class QuestionService {
      * @return
      */
     public List<Question> getAllQuestions(){
-        return questionRepository.findAll();
+        return questionRepository.findAll(Sort.by(Sort.Direction.ASC, "id"));
     }
 
     /**
