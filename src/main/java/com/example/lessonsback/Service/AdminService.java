@@ -1,5 +1,6 @@
 package com.example.lessonsback.Service;
 
+import com.example.lessonsback.Domain.model.Question;
 import com.example.lessonsback.Domain.model.Test;
 import com.example.lessonsback.Domain.model.User;
 import lombok.RequiredArgsConstructor;
@@ -13,6 +14,7 @@ import java.util.List;
 public class AdminService {
     private final UserService userService;
     private final TestService testService;
+    private final QuestionService questionService;
 //    private final UserMapper userMapper;
 
     /**
@@ -55,6 +57,26 @@ public class AdminService {
     }
 
     /**
+     * Получение всех вопросов
+     *
+     * @return
+     */
+    public List<Question> getAllQuestions() {
+        return questionService.getAllQuestions();
+    }
+
+    /**
+     * Получение вопроса по id
+     *
+     * @param id
+     * @return
+     */
+
+    public Question getQuestionById(int id) {
+        return questionService.getById(id);
+    }
+
+    /**
      * Сохранение теста
      *
      * @param test
@@ -62,5 +84,15 @@ public class AdminService {
     @Transactional
     public void saveTest(Test test) {
         testService.save(test);
+    }
+
+    /**
+     * Сохранение вопроса
+     *
+     * @param question
+     */
+    @Transactional
+    public void saveQuestion(Question question) {
+        questionService.save(question);
     }
 }

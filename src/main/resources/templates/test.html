@@ -26,7 +26,7 @@
                         <h1 class="fw-bolder mb-1" th:text="${test.getTestName()}">Welcome to Blog Post!</h1>
                     </div>
                     <section class="mb-5">
-                        <p class="fs-5 mb-4" th:utext="${test.getDesc()}"></p>
+                        <p class="fs-5 mb-4" th:utext="${test.getDescription()}"></p>
                         <form th:unless="${isPassed.isSuccess}"
                               style="background-color:rgba(240,240,240,0.8); padding:15px;"
                               class="question_blocks" method="post"

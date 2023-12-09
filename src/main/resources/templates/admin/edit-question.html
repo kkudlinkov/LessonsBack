@@ -1,0 +1,57 @@
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="admin/admin_layout"
+>
+<head>
+    <meta charset="UTF-8">
+    <title>Редактирование фильм</title>
+</head>
+<body>
+
+<section layout:fragment="content">
+    <div class="container mt-5">
+        <h1>Редактирование пользователя</h1>
+        <form th:method="post" th:action="@{/admin/questions/edit}" th:object="${question}">
+            <input type="hidden" th:field="*{id}"/>
+
+            <div class="form-group mb-3">
+                <label for="test_name">Тема</label>
+                <input type="text" class="form-control" id="test_name" th:field="*{questionText}"/>
+            </div>
+
+            <div class="form-group mb-3">
+                <label for="first_answer">Первый ответ:</label>
+                <input type="text" class="form-control" id="first_answer" th:field="*{firstAnswer}"/>
+            </div>
+
+            <div class="form-group mb-3">
+                <label for="second_answer">Второй ответ:</label>
+                <input type="text" class="form-control" id="second_answer" th:field="*{secondAnswer}"/>
+            </div>
+
+            <div class="form-group mb-3">
+                <label for="third_answer">Третий ответ:</label>
+                <input type="text" class="form-control" id="third_answer" th:field="*{thirdAnswer}"/>
+            </div>
+
+            <div class="form-group mb-3">
+                <label for="fourth_answer">Четвертый ответ:</label>
+                <input type="text" class="form-control" id="fourth_answer" th:field="*{fourthAnswer}"/>
+            </div>
+
+            <div class="form-group mb-3">
+                <label for="correct_answer">Правильный ответ:</label>
+                <input type="number" class="form-control" id="correct_answer" th:field="*{correctAnswer}"/>
+            </div>
+
+            <div class="form-group mb-3">
+                <label for="test_id">Id теста</label>
+                <input type="text" class="form-control" id="test_id" th:field="*{test}"/>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Сохранить</button>
+            <a href="/admin/users" class="btn btn-secondary">Отменить</a>
+        </form>
+    </div>
+</section>
+</body>
+</html>

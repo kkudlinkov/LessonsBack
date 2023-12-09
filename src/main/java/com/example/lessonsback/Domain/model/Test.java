@@ -23,8 +23,8 @@ public class Test {
     @Column(name = "test_name")
     private String testName;
 
-    @Column(name = "desc")
-    private String desc;
+    @Column(name = "description")
+    private String description;
 
     @Column(name = "min_grade")
     private int minGrade;

@@ -1,5 +1,6 @@
 package com.example.lessonsback.Controller;
 
+import com.example.lessonsback.Domain.model.Question;
 import com.example.lessonsback.Domain.model.Test;
 import com.example.lessonsback.Service.AdminService;
 import lombok.AllArgsConstructor;
@@ -29,6 +30,8 @@ public class AdminController {
         return "/admin/users";
     }
 
+
+
     @GetMapping("/tests")
     public String tests(
             Model model
@@ -55,6 +58,31 @@ public class AdminController {
     ) {
         adminService.saveTest(test);
         return "redirect:/admin/tests?success";
+    }
+
+    @GetMapping("/questions")
+    public String questions(
+            Model model
+    ) {
+        model.addAttribute("questions", adminService.getAllQuestions());
+        return "admin/questions";
+    }
+
+    @GetMapping("/questions/edit/{id}")
+    public String editQuestion(
+            @PathVariable("id") int id,
+            Model model
+    ) {
+        model.addAttribute("question", adminService.getQuestionById(id));
+        return "admin/edit-question";
+    }
+
+    @PostMapping("/questions/edit")
+    public String editQuestionPost(
+            @ModelAttribute("question") Question question
+    ) {
+        adminService.saveQuestion(question);
+        return "redirect:/admin/questions?success";
     }
 
 
