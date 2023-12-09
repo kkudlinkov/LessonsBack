@@ -9,6 +9,7 @@ import com.example.lessonsback.Domain.model.Test;
 import com.example.lessonsback.Repository.AttemptRepository;
 import com.example.lessonsback.Repository.TestRepository;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -29,7 +30,7 @@ public class TestService {
      * @return
      */
     public List<Test> getAllTests(){
-        return repository.findAll();
+        return repository.findAll(Sort.by(Sort.Direction.ASC, "id"));
     }
 
     /**
@@ -106,5 +107,9 @@ public class TestService {
                 .isSuccess(attemps.stream().anyMatch(Attempt::getIsSuccess))
                 .tries(attemps.size())
                 .build();
+    }
+
+    public void save(Test test) {
+        repository.save(test);
     }
 }

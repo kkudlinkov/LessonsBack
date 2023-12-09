@@ -51,6 +51,15 @@ public class UserService {
     }
 
     /**
+     * Получение всех юзеров
+     *
+     * @return
+     */
+    public List<User> getAllUsers() {
+        return userRepository.findAll();
+    }
+
+    /**
      * Получение конкретного юзера
      *
      * @return
