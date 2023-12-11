@@ -3,13 +3,13 @@
 >
 <head>
     <meta charset="UTF-8">
-    <title>Редактирование фильм</title>
+    <title>Редактирование методички</title>
 </head>
 <body>
 
 <section layout:fragment="content">
     <div class="container mt-5">
-        <h1>Редактирование пользователя</h1>
+        <h1>Редактирование методички</h1>
         <form th:method="post" th:action="@{/admin/tests/edit}" th:object="${test}">
             <input type="hidden" th:field="*{id}"/>
 
